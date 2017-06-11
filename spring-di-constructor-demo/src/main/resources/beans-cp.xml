@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="organization" class="com.aravinda.springDemo.domain.Organization">
+		<constructor-arg value="Google" name="company"></constructor-arg>
+		<constructor-arg value="1996" name="year"></constructor-arg>
+
+		<property name="postalCode">
+			<value>659885</value>
+		</property>
+		<property name="empCount">
+			<value>10500</value>
+		</property>
+		<property name="slogan"
+			value="To Organizethe worlds information and make it universally accesible and useful">
+		</property>
+		<property name="businessService" ref="ecomService"></property>
+	</bean>
+	<bean id="cloudService" class="com.aravinda.springDemo.serviceImpl.CloudServiceImpl">
+	</bean>
+	<bean id="ecomService" class="com.aravinda.springDemo.serviceImpl.ECommerceService">
+	</bean>
+	<bean id="agency"
+		class="com.aravinda.springDemo.serviceImpl.AgencyRecuitementServiceImpl">
+	</bean>
+	<bean id="referrel"
+		class="com.aravinda.springDemo.serviceImpl.RefferealRecruitementServiceImpl">
+	</bean>
+	<bean id="myHrDep" class="com.aravinda.springDemo.service.HumanResourceDepartment">
+		<constructor-arg name="recruitementService" ref="referrel"></constructor-arg>
+		<constructor-arg name="organization" ref="organization"></constructor-arg>
+		<property name="depatmentName" value="Human Resources Department"></property>
+	</bean>
+</beans>

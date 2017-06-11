@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	default-destroy-method="preDestroy" default-init-method="postConstruct"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+
+	<bean id="organization" class="com.aravinda.springDemo.domain.Organization">
+		<constructor-arg value="${org.company}" name="company"></constructor-arg>
+		<constructor-arg value="${org.year}" name="year"></constructor-arg>
+		<!-- <property name="empCount" value="${org.empCount}" />
+			<property name="postalCode" value="${org.postalCode}" /> -->
+		<!-- <property name="slogan" value="${org.slogan}" /> -->
+		<property name="businessService" ref="cloudService"></property>
+	</bean>
+	<bean id="cloudService" class="com.aravinda.springDemo.serviceImpl.CloudServiceImpl">
+	</bean>
+	<bean id="ecomService" class="com.aravinda.springDemo.serviceImpl.ECommerceService">
+	</bean>
+	<!-- <context:annotation-config></context:annotation-config> -->
+	<context:component-scan base-package="com.aravinda.springDemo.domain">
+	</context:component-scan>
+	<context:property-placeholder location="org.properties" />
+</beans>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="organization" class="com.aravinda.Organization"
+		factory-method="createInstance">
+		<constructor-arg value="BMW" name="company"></constructor-arg>
+		<constructor-arg value="1929" name="year"></constructor-arg>
+	</bean>
+	<bean id="organization2" class="com.aravinda.Organization"
+		factory-method="getInstance" factory-bean="orgFactory">
+		<constructor-arg value="BMW" name="company"></constructor-arg>
+		<constructor-arg value="1929" name="year"></constructor-arg>
+	</bean>
+	<bean id="orgFactory" class="com.aravinda.OrganizationFactory"></bean>
+</beans>
